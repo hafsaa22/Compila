@@ -1,0 +1,14 @@
+VAR age : entier;
+VAR estMajeur : boolean;
+AFFICHER("Veuillez saisir votre age :");
+LIRE(age);
+SI age > 18 ALORS
+    estMajeur = true;
+SINON
+    estMajeur = false;
+FINSI;
+compteur = 0;
+TANT_QUE compteur < 3 FAIRE
+    AFFICHER(compteur);
+    compteur = compteur + 1;
+FINTANTQUE;
