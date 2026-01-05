@@ -1,7 +1,7 @@
 public enum TokenType {
 
     // Mots-clés
-    VAR, SI, ALORS, SINON, FINSI,
+    OPTION, VAR, SI, ALORS, SINON, FINSI,
     TANT_QUE, FAIRE, FINTANTQUE,
     AFFICHER, LIRE,
 

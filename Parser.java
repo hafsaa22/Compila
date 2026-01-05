@@ -32,17 +32,19 @@ public class Parser {
     public List<Instruction> parse() {
         List<Instruction> instructions = new ArrayList<>();
 
-        if (peek().valeur != null && peek().valeur.equals("OPTION")) {
-            consume(TokenType.ID, "Attendu OPTION");
+        if (!isAtEnd() && peek().type == TokenType.OPTION) {
+            consume(TokenType.OPTION, "Attendu le mot-clé OPTION");
             consume(TokenType.DEUX_POINTS, "Attendu :");
-            consume(TokenType.ID, "Attendu le langage cible");
+        
+
+            Token langage = consume(TokenType.ID, "Attendu le langage cible");
+            System.out.println("Cible de compilation détectée : " + langage.valeur);
+        
             consume(TokenType.PV, "Attendu ;");
         }
 
         while (!isAtEnd()) {
-            if (match(TokenType.PV)) {
-                continue; 
-            }
+            if (match(TokenType.PV)) continue; 
             instructions.add(declarationOuInstruction());
         }
         return instructions;

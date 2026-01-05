@@ -68,6 +68,7 @@ public class Lexer {
                 String mot = lireIdentifiant().toUpperCase();
 
                 switch (mot) {
+                    case "OPTION": tokens.add(new Token(TokenType.OPTION, null)); break;
                     case "VAR": tokens.add(new Token(TokenType.VAR, null)); break;
                     case "SI": tokens.add(new Token(TokenType.SI, null)); break;
                     case "ALORS": tokens.add(new Token(TokenType.ALORS, null)); break;
