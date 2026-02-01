@@ -70,9 +70,23 @@ public class Parser {
     private Instruction parseVarDecl() {
         String nom = consume(TokenType.ID, "Attendu nom variable").valeur;
         consume(TokenType.DEUX_POINTS, "Attendu :");
-        Token typeToken = tokens.get(current++); 
+
+        String typeName;
+
+        if (match(TokenType.ENTIER)) {
+            typeName = "ENTIER";
+        } else if (match(TokenType.BOOLEAN)) {
+            typeName = "BOOLEAN";
+        } else if (match(TokenType.CARACTERE)) {
+            typeName = "CARACTERE";
+        } else if (match(TokenType.ID)) {
+            typeName = tokens.get(current - 1).valeur;
+        } else {
+            throw new RuntimeException("Attendu un type de variable");
+        }
+
         consume(TokenType.PV, "Attendu ;");
-        return new VarDecl(nom, typeToken.type.toString());
+        return new VarDecl(nom, typeName);
     }
 
     private Instruction parseSi() {
@@ -114,7 +128,15 @@ public class Parser {
     }
 
     private Expr parsePrimaire() {
-        if (match(TokenType.NUM)) return new LiteralExpr(tokens.get(current-1).valeur);
+        if (match(TokenType.NUM)) {
+            String numStr = tokens.get(current-1).valeur;
+            try {
+                int value = Integer.parseInt(numStr);
+                return new LiteralExpr(value);
+            } catch (NumberFormatException e) {
+                return new LiteralExpr(numStr);
+            }
+        }
         if (match(TokenType.ID)) return new VariableExpr(tokens.get(current-1).valeur);
         if (match(TokenType.TRUE)) return new LiteralExpr(true);
         if (match(TokenType.FALSE)) return new LiteralExpr(false);

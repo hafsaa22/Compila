@@ -32,5 +32,36 @@ public class Main {
         System.out.println("\n=== ANALYSE SEMANTIQUE ===");
         AnalyseurSemantique analyseurSemantique = new AnalyseurSemantique(ast);
         analyseurSemantique.analyser();
+
+        System.out.println("\n=== GENERATION DE CODE ===");
+
+        String langage = tokens.get(2).valeur;
+
+        try {
+            CodeGenerator generator;
+            String fichierSortie;
+
+            switch (langage.toLowerCase()) {
+                case "python":
+                    generator = new PythonGenerator();
+                    fichierSortie = "output.py";
+                    break;
+                case "java":
+                    generator = new JavaGenerator();
+                    fichierSortie = "Output.java";
+                    break;
+                default:
+                    throw new Exception("Langage non supporté ou non spécifié: " + langage);
+            }
+
+            FileOutputStream fos = new FileOutputStream(fichierSortie);
+            generator.generate(ast, fos);
+            fos.close();
+
+            System.out.println("Code généré avec succès dans : " + fichierSortie);
+        } catch (Exception e) {
+            System.err.println("Erreur lors de la génération de code : " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }

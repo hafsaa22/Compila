@@ -1,9 +1,9 @@
 # Pseudo-Code
 
-**Options**: Java, C, Python
-**Types**: entiers, caractères, booléens
-**Opérateurs**: +, -, *, /, =, >, <, ==, !=
-**Mots-clés**: OPTION, VAR, SI, ALORS, SINON, FINSI, TANT_QUE, FAIRE, FINTANTQUE, AFFICHER, LIRE
+- **Options**: Java, C, Python
+- **Types**: entiers, caractères, booléens
+- **Opérateurs**: +, -, *, /, =, >, <, ==, !=
+- **Mots-clés**: OPTION, VAR, SI, ALORS, SINON, FINSI, TANT_QUE, FAIRE, FINTANTQUE, AFFICHER, LIRE
 
 #### Exemple de Pseudo-Code:
 ```
@@ -39,7 +39,7 @@ TANT_QUE compteur < 3 FAIRE
 FINTANTQUE;
 ```
 ### Grammaire
-PROGRAMME := 
-OPTION_DECL := "OPTION:" LANGAGE_OPTION
-LANGAGE_OPTION := "Python"
-DECLARATIONS :=
+- PROGRAMME := 
+- OPTION_DECL := "OPTION:" LANGAGE_OPTION
+- LANGAGE_OPTION := "Python"
+- DECLARATIONS :=

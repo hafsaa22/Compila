@@ -1,4 +1,4 @@
-OPTION: Python;
+OPTION: python;
 
 VAR age : entier;
 VAR estMajeur : boolean;
