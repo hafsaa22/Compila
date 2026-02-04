@@ -4,7 +4,7 @@ import ast.*;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        BufferedReader br = new BufferedReader(new FileReader("pseudocode.txt"));
+        BufferedReader br = new BufferedReader(new FileReader(args[0]));
         StringBuilder code = new StringBuilder();
         String ligne;
 
@@ -41,10 +41,15 @@ public class Main {
             CodeGenerator generator;
             String fichierSortie;
 
+            fichierSortie = (args[0].contains("\\")) ? args[0].split("\\\\")[args[0].split("\\\\").length - 1] : args[0].split("/")[args[0].split("/").length - 1];
+            if (fichierSortie.contains(".")) {
+                fichierSortie = fichierSortie.split("\\.")[0];
+            }
+
             switch (langage.toLowerCase()) {
                 case "python":
                     generator = new PythonGenerator();
-                    fichierSortie = "output.py";
+                    fichierSortie = fichierSortie.concat(".py");
                     break;
                 case "java":
                     generator = new JavaGenerator();

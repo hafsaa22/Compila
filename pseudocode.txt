@@ -1,14 +1,22 @@
-OPTION: python;
+OPTION: java;
 
 VAR age : entier;
 VAR estMajeur : boolean;
-VAR lettre : caractere;
-VAR compteur : entier;
+VAR lettre : chaine;
+VAR compteur : chaine;
 
 AFFICHER("Veuillez saisir votre age :");
 LIRE(age);
 
-SI age > 18 ALORS
+AFFICHER(10 / 2);
+AFFICHER(2 - 1);
+AFFICHER(6 * 3);
+AFFICHER(1024 % 5);
+
+AFFICHER(true ET false);
+AFFICHER(true OU false);
+
+SI age >= 18 ALORS
     estMajeur = true;
     lettre = 'M';
 SINON

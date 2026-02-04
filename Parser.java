@@ -119,7 +119,7 @@ public class Parser {
 
     private Expr parseExpression() {
         Expr gauche = parsePrimaire();
-        if (match(TokenType.SUP, TokenType.INF, TokenType.EGAL_EGAL, TokenType.PLUS)) {
+        if (match(TokenType.ET, TokenType.OU, TokenType.SUP, TokenType.SUP_EGAL, TokenType.INF, TokenType.INF_EGAL, TokenType.EGAL_EGAL, TokenType.DIFFERENT, TokenType.PLUS, TokenType.MOINS, TokenType.MULT, TokenType.DIV, TokenType.MOD)) {
             String op = tokens.get(current-1).type.toString();
             Expr droite = parsePrimaire();
             return new BinaryExpr(gauche, op, droite);

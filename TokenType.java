@@ -15,7 +15,7 @@ public enum TokenType {
     ID, NUM, CHAINE, CAR,
 
     // Opérateurs
-    PLUS, EGAL, EGAL_EGAL, INF, SUP,
+    PLUS, MOINS, MULT, DIV, MOD, EGAL, DIFFERENT, EGAL_EGAL, INF, INF_EGAL, SUP, SUP_EGAL, ET, OU,
 
     // Symboles
     DEUX_POINTS, PV, PO, PF,

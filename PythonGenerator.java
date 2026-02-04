@@ -55,11 +55,11 @@ public class PythonGenerator implements CodeGenerator {
         String declaredType = variableTypes.get(varName);
 
         if (declaredType != null) {
-            if (declaredType.equals("ENTIER") || declaredType.equals("INT")) {
+            if (declaredType.equals("ENTIER")) {
                 write(varName + " = int(input())");
                 return;
             }
-            if (declaredType.equals("REEL") || declaredType.equals("FLOTTANT") || declaredType.equals("FLOAT")) {
+            if (declaredType.equals("REEL")) {
                 write(varName + " = float(input())");
                 return;
             }

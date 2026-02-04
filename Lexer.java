@@ -84,6 +84,8 @@ public class Lexer {
                     case "CARACTERE": tokens.add(new Token(TokenType.CARACTERE, null)); break;
                     case "TRUE": tokens.add(new Token(TokenType.TRUE, null)); break;
                     case "FALSE": tokens.add(new Token(TokenType.FALSE, null)); break;
+                    case "OU": tokens.add(new Token(TokenType.OU, null)); break;
+                    case "ET": tokens.add(new Token(TokenType.ET, null)); break;
                     default: tokens.add(new Token(TokenType.ID, mot));
                 }
                 continue;
@@ -91,8 +93,42 @@ public class Lexer {
 
             switch (current) {
                 case '+': tokens.add(new Token(TokenType.PLUS, null)); avancer(); break;
-                case '<': tokens.add(new Token(TokenType.INF, null)); avancer(); break;
-                case '>': tokens.add(new Token(TokenType.SUP, null)); avancer(); break;
+                case '-': tokens.add(new Token(TokenType.MOINS, null)); avancer(); break;
+                case '*': tokens.add(new Token(TokenType.MULT, null)); avancer(); break;
+                case '/': tokens.add(new Token(TokenType.DIV, null)); avancer(); break;
+                case '%': tokens.add(new Token(TokenType.MOD, null)); avancer(); break;
+                case '&': tokens.add(new Token(TokenType.ET, null)); avancer(); break;
+                case '|': tokens.add(new Token(TokenType.OU, null)); avancer(); break;
+
+                case '<':
+                    avancer();
+                    if (current == '=') {
+                        tokens.add(new Token(TokenType.INF_EGAL, null));
+                        avancer();
+                    } else {
+                        tokens.add(new Token(TokenType.INF, null));
+                    }
+                    break;
+
+                case '>':
+                    avancer();
+                    if (current == '=') {
+                        tokens.add(new Token(TokenType.SUP_EGAL, null));
+                        avancer();
+                    } else {
+                        tokens.add(new Token(TokenType.SUP, null));
+                    }
+                    break;
+
+                case '!':
+                    avancer();
+                    if (current == '=') {
+                        tokens.add(new Token(TokenType.DIFFERENT, null));
+                        avancer();
+                        break;
+                    } else {
+                        tokens.add(new Token(TokenType.ERREUR, String.valueOf(current)));
+                    }
 
                 case '=':
                     avancer();

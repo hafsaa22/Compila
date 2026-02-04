@@ -9,7 +9,7 @@ public class JavaGenerator implements CodeGenerator {
     private Map<String, String> variableTypes = new HashMap<>();
 
     @Override
-    public void generate(List<Instruction> ast, OutputStream out) throws IOException {
+    public void generate(List<Instruction> ast, OutputStream out) {
         this.writer = new PrintWriter(new OutputStreamWriter(out, StandardCharsets.UTF_8), true);
 
         for (Instruction instruction : ast) {
@@ -89,12 +89,8 @@ public class JavaGenerator implements CodeGenerator {
         String declaredType = variableTypes.get(varName);
 
         if (declaredType != null) {
-            if (declaredType.equals("ENTIER") || declaredType.equals("INT")) {
+            if (declaredType.equals("ENTIER")) {
                 write(varName + " = scanner.nextInt();");
-                return;
-            }
-            if (declaredType.equals("REEL") || declaredType.equals("FLOTTANT") || declaredType.equals("FLOAT")) {
-                write(varName + " = scanner.nextDouble();");
                 return;
             }
             if (declaredType.equals("BOOLEAN")) {
@@ -160,10 +156,6 @@ public class JavaGenerator implements CodeGenerator {
         }
 
         if (literal.valeur instanceof Integer) {
-            return literal.valeur.toString();
-        }
-
-        if (literal.valeur instanceof Double || literal.valeur instanceof Float) {
             return literal.valeur.toString();
         }
 
@@ -236,11 +228,8 @@ public class JavaGenerator implements CodeGenerator {
     private String mapTypeToJava(String pseudoType) {
         switch (pseudoType.toUpperCase()) {
             case "ENTIER":
-            case "INT":
                 return "int";
             case "REEL":
-            case "FLOTTANT":
-            case "FLOAT":
                 return "double";
             case "BOOLEAN":
                 return "boolean";
